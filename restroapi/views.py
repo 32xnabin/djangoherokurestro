@@ -34,28 +34,28 @@ def restro_list(request):
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
 
-@csrf_exempt
-def restro_detail(request, pk):
-    """
-    Retrieve, update or delete a code restro.
-    """
-    try:
-        restro = Restro.objects.get(pk=pk)
-    except Restro.DoesNotExist:
-        return HttpResponse(status=404)
+# @csrf_exempt
+# def restro_detail(request, pk):
+#     """
+#     Retrieve, update or delete a code restro.
+#     """
+#     try:
+#         restro = Restro.objects.get(pk=pk)
+#     except Restro.DoesNotExist:
+#         return HttpResponse(status=404)
 
-    if request.method == 'GET':
-        serializer = RestroSerializer(restro)
-        return JsonResponse(serializer.data)
+#     if request.method == 'GET':
+#         serializer = RestroSerializer(restro)
+#         return JsonResponse(serializer.data)
 
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = RestroSerializer(restro, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+#     elif request.method == 'PUT':
+#         data = JSONParser().parse(request)
+#         serializer = RestroSerializer(restro, data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data)
+#         return JsonResponse(serializer.errors, status=400)
 
-    elif request.method == 'DELETE':
-        restro.delete()
-        return HttpResponse(status=204)
+#     elif request.method == 'DELETE':
+#         restro.delete()
+#         return HttpResponse(status=204)
