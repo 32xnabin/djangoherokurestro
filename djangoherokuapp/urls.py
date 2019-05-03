@@ -10,4 +10,6 @@ urlpatterns = [
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     #path('admin/', admin.site.urls),
     path('', include('restroapi.urls')),
+    path('', include('agroaccount.urls')),
+    
 ]
